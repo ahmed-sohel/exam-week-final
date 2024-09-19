@@ -1,0 +1,28 @@
+{
+  "menu": [
+    {
+      "url": "admin/dashboard",
+      "name": "Dashboards",
+      "icon": "menu-icon tf-icons bx bx-home-circle",
+      "slug": "admin.dashboard"
+    },
+    {
+      "url": "admin/car",
+      "name": "Car",
+      "icon": "menu-icon tf-icons bx bx-car",
+      "slug": "admin.car"
+    },
+    {
+      "url": "admin/customer",
+      "name": "Customer",
+      "icon": "menu-icon tf-icons bx bx-user",
+      "slug": "admin.customer"
+    },
+    {
+      "url": "admin/rental",
+      "name": "Rental",
+      "icon": "menu-icon tf-icons bx bx-purchase-tag",
+      "slug": "admin.rental"
+    }
+  ]
+}
