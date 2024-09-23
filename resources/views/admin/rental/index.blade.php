@@ -27,6 +27,8 @@
                         <th>Car</th>
                         <th>Model</th>
                         <th>Duration</th>
+                        <th>Rent</th>
+                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -39,6 +41,8 @@
                             <td>
                                 {{ Carbon\Carbon::parse($rental->start_date)->format('d M, Y') . ' - ' . Carbon\Carbon::parse($rental->end_date)->format('d M, Y') }}
                             </td>
+                            <td>{{ $rental->total_cost }} BDT</td>
+                            <td>{{ $rental->status }}</td>
                             <td>
                                 <div class="dropdown">
                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"

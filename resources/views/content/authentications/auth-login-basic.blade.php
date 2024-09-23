@@ -16,16 +16,11 @@
                         <!-- Logo -->
                         <div class="app-brand justify-content-center">
                             <a href="{{ url('/') }}" class="app-brand-link gap-2">
-                                <span class="app-brand-logo demo">@include('_partials.macros', [
-                                    'width' => 25,
-                                    'withbg' => 'var(--bs-primary)',
-                                ])</span>
-                                <span
-                                    class="app-brand-text demo text-heading fw-bold">{{ config('variables.templateName') }}</span>
+                                <span class="app-brand-text demo text-heading fw-bold">Rent a car</span>
                             </a>
                         </div>
                         <!-- /Logo -->
-                        <h4 class="mb-1">Welcome to {{ config('variables.templateName') }}! 👋</h4>
+                        <h4 class="mb-1">Welcome to Rent a car! 👋</h4>
                         <p class="mb-6">Please sign-in to your account and start the adventure</p>
 
                         <form id="formAuthentication" class="mb-6" action="{{ route('login.attempt') }}" method="POST">
@@ -44,7 +39,7 @@
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                 </div>
                             </div>
-                            <div class="mb-8">
+                            {{-- <div class="mb-8">
                                 <div class="d-flex justify-content-between mt-8">
                                     <div class="form-check mb-0 ms-2">
                                         <input class="form-check-input" type="checkbox" id="remember-me">
@@ -53,18 +48,18 @@
                                         </label>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="mb-6">
                                 <button class="btn btn-primary d-grid w-100" type="submit">Login</button>
                             </div>
                         </form>
 
-                        <p class="text-center">
+                        {{-- <p class="text-center">
                             <span>New on our platform?</span>
                             <a href="{{ url('auth/register-basic') }}">
                                 <span>Create an account</span>
                             </a>
-                        </p>
+                        </p> --}}
                     </div>
                 </div>
             </div>

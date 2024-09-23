@@ -52,7 +52,7 @@ class RentalController extends Controller
 
 
     //get days between two dates
-    $days = (strtotime($endDate) - strtotime($startDate)) / 86400;
+    $days = (strtotime($endDate) - strtotime($startDate)) / 86400 == 0 ? 1 : (strtotime($endDate) - strtotime($startDate)) / 86400;
     $car = Car::find($carId);
     $total_price = $days * $car->daily_rent_price;
 
@@ -62,6 +62,7 @@ class RentalController extends Controller
     $rental->start_date = $startDate;
     $rental->end_date = $endDate;
     $rental->total_cost = $total_price;
+    $rental->status = 'Ongoing';
     $rental->save();
 
     return redirect('admin/rental')->with('success', 'Rental created.');
@@ -107,7 +108,7 @@ class RentalController extends Controller
     }
 
     //get days between two dates
-    $days = (strtotime($endDate) - strtotime($startDate)) / 86400;
+    $days = (strtotime($endDate) - strtotime($startDate)) / 86400 == 0 ? 1 : (strtotime($endDate) - strtotime($startDate)) / 86400;
     $car = Car::find($carId);
     $total_price = $days * $car->daily_rent_price;
 
@@ -116,6 +117,8 @@ class RentalController extends Controller
     $rental->start_date = $startDate;
     $rental->end_date = $endDate;
     $rental->total_cost = $total_price;
+    $rental->total_cost = $total_price;
+    $rental->status = $request->get('status');
     $rental->save();
 
     return redirect('admin/rental')->with('success', 'Rental updated.');

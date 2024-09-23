@@ -66,6 +66,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('/car', CarController::class);
     Route::resource('/customer', CustomerController::class);
     Route::resource('/rental', RentalController::class);
+    Route::get('/rental-history/{customer}', [CustomerController::class, 'rentalHistory'])->name('rental-history');
   });
 });
 

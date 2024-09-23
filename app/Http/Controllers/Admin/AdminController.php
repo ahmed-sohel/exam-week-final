@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Car;
+use App\Models\Rental;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,7 +35,15 @@ class AdminController extends Controller
 
   public function analytics(Request $request)
   {
-    return view('content.dashboard.dashboards-analytics');
+    $cars = Car::all();
+    $totalCars = $cars->count();
+    $availableCars = $cars->where('availability', 1)->count();
+
+    $rentals = Rental::all();
+    $totalRents = $rentals->count();
+    $profit = $rentals->where('status', 'Completed')->sum('total_cost');
+
+    return view('content.dashboard.dashboards-analytics', compact('totalCars', 'availableCars', 'totalRents', 'profit'));
   }
 
   public function logout(Request $request)

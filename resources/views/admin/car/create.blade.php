@@ -3,6 +3,11 @@
 @section('title', 'Car')
 
 @section('content')
+    <a href="{{ route('car.index') }}" style="float: right">
+        <button type="button" class="btn btn-primary" title="Back">
+            <i class="bx bx-arrow-back me-1"></i> Back
+        </button>
+    </a>
     <h4 class="py-3 mb-4">
         <span class="text-muted fw-light">Create Car</span>
     </h4>

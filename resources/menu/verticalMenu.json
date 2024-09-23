@@ -4,25 +4,41 @@
       "url": "admin/dashboard",
       "name": "Dashboards",
       "icon": "menu-icon tf-icons bx bx-home-circle",
-      "slug": "admin.dashboard"
+      "slug": [
+        "admin.dashboard"
+      ]
     },
     {
       "url": "admin/car",
       "name": "Car",
       "icon": "menu-icon tf-icons bx bx-car",
-      "slug": "admin.car"
+      "slug": [
+        "car.index",
+        "car.create",
+        "car.edit",
+        "car.show"
+      ]
     },
     {
       "url": "admin/customer",
       "name": "Customer",
       "icon": "menu-icon tf-icons bx bx-user",
-      "slug": "admin.customer"
+      "slug": [
+        "customer.index",
+        "customer.create",
+        "customer.edit",
+        "rental-history"
+      ]
     },
     {
       "url": "admin/rental",
-      "name": "Rental",
+      "name": "Rent",
       "icon": "menu-icon tf-icons bx bx-purchase-tag",
-      "slug": "admin.rental"
+      "slug": [
+        "rental.index",
+        "rental.edit",
+        "rental.create"
+      ]
     }
   ]
 }

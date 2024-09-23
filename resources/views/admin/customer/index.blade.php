@@ -38,6 +38,8 @@
                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                         data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                                     <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{{ route('rental-history', $customer->id) }}"><i
+                                                class="bx bx-history me-1"></i> Rental history</a>
                                         <a class="dropdown-item" href="{{ route('customer.edit', $customer->id) }}"><i
                                                 class="bx bx-edit-alt me-1"></i> Edit</a>
                                         <form method="POST" action="{{ route('customer.destroy', $customer->id) }}"

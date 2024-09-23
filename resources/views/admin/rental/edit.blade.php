@@ -3,6 +3,11 @@
 @section('title', 'Rental')
 
 @section('content')
+    <a href="{{ route('rental.index') }}" style="float: right">
+        <button type="button" class="btn btn-primary" title="Back">
+            <i class="bx bx-arrow-back me-1"></i> Back
+        </button>
+    </a>
     <h4 class="py-3 mb-4">
         <span class="text-muted fw-light">Create Rental</span>
     </h4>
@@ -63,6 +68,20 @@
                             <label for="end_date" class="form-label">End date</label>
                             <input type="date" name="end_date" value="{{ $rental->end_date }}" id="end_date"
                                 class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <label for="status" class="form-label">Status</label>
+                            <select name="status" id="status" class="form-select">
+                                <option value="" disabled selected>Select Status</option>
+                                <option value="Ongoing" {{ $rental->status == 'Ongoing' ? 'selected' : '' }}>Ongoing
+                                </option>
+                                <option value="Completed" {{ $rental->status == 'Completed' ? 'selected' : '' }}>Completed
+                                </option>
+                                <option value="Cancelled" {{ $rental->status == 'Cancelled' ? 'selected' : '' }}>Cancelled
+                                </option>
+                            </select>
                         </div>
                     </div>
                     <div class="card-body">

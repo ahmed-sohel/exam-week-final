@@ -2,9 +2,9 @@
 
     <!-- ! Hide app brand if navbar-full -->
     <div class="app-brand demo">
-        <a href="{{ url('/') }}" class="app-brand-link">
+        <a href="{{ url('/admin/dashboard') }}" class="app-brand-link">
             {{-- <span class="app-brand-logo demo">@include('_partials.macros', ['width' => 25, 'withbg' => 'var(--bs-primary)'])</span> --}}
-            <span class="app-brand-text demo menu-text fw-bold ms-2">Dashboard</span>
+            <span class="app-brand-text demo menu-text fw-bold ms-2">Admin</span>
         </a>
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -28,8 +28,7 @@
                 @php
                     $activeClass = null;
                     $currentRouteName = Route::currentRouteName();
-
-                    if ($currentRouteName === $menu->slug) {
+                    if (in_array($currentRouteName, $menu->slug)) {
                         $activeClass = 'active';
                     } elseif (isset($menu->submenu)) {
                         if (gettype($menu->slug) === 'array') {

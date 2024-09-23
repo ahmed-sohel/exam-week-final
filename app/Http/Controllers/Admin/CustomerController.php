@@ -96,4 +96,13 @@ class CustomerController extends Controller
 
     return redirect('admin/customer')->with('success', 'Customer deleted.');
   }
+
+  /**
+   * Get rental history of a customer.
+   */
+  public function rentalHistory(User $customer)
+  {
+    $rentals = $customer->rentals()->get();
+    return view('admin.customer.rental-history', compact('customer', 'rentals'));
+  }
 }
