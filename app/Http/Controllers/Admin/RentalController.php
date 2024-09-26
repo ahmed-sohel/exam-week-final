@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Enums\RentalStatus;
 use App\Models\Car;
 use App\Models\Rental;
 use App\Models\User;
@@ -50,7 +51,6 @@ class RentalController extends Controller
       return redirect()->back()->withInput()->with('error', 'Car is not available for selected date range.');
     }
 
-
     //get days between two dates
     $days = (strtotime($endDate) - strtotime($startDate)) / 86400 == 0 ? 1 : (strtotime($endDate) - strtotime($startDate)) / 86400;
     $car = Car::find($carId);
@@ -62,7 +62,7 @@ class RentalController extends Controller
     $rental->start_date = $startDate;
     $rental->end_date = $endDate;
     $rental->total_cost = $total_price;
-    $rental->status = 'Ongoing';
+    $rental->status = RentalStatus::ONGOING->value;
     $rental->save();
 
     return redirect('admin/rental')->with('success', 'Rental created.');
@@ -116,7 +116,6 @@ class RentalController extends Controller
     $rental->car_id = $carId;
     $rental->start_date = $startDate;
     $rental->end_date = $endDate;
-    $rental->total_cost = $total_price;
     $rental->total_cost = $total_price;
     $rental->status = $request->get('status');
     $rental->save();
