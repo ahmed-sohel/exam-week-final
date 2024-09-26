@@ -22,14 +22,18 @@ class MyBookingController extends Controller
     return view('my-bookings.past-booking', compact('rentals'));
   }
 
-  public function cancelBooking(Rental $rental)
+  public function cancelBooking(Request $request, Rental $rental)
   {
-    //Cancel a booking (only if the rental has not started yet).
-    if ($rental->status == RentalStatus::ONGOING->value && $rental->start_date > date('Y-m-d')) {
-      $rental->status = RentalStatus::CANCELLED->value;
-      $rental->save();
-      return redirect()->back()->with('success', 'Booking has been cancelled successfully.');
+    if ($rental->user_id == $request->user()->id) {
+      //Cancel a booking (only if the rental has not started yet).
+      if ($rental->status == RentalStatus::ONGOING->value && $rental->start_date > date('Y-m-d')) {
+        $rental->status = RentalStatus::CANCELLED->value;
+        $rental->save();
+        return redirect()->back()->with('success', 'Booking has been cancelled successfully.');
+      }
+      return redirect()->back()->with('error', 'Sorry, this booking cannot be cancelled.');
+    } else {
+      abort(403, 'You are not authorized to cancel this booking.');
     }
-    return redirect()->back()->with('error', 'Sorry, this booking cannot be cancelled.');
   }
 }
