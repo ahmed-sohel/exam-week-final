@@ -52,7 +52,7 @@ class RentalController extends Controller
     }
 
     //get days between two dates
-    $days = (strtotime($endDate) - strtotime($startDate)) / 86400 == 0 ? 1 : (strtotime($endDate) - strtotime($startDate)) / 86400;
+    $days = ((strtotime($endDate) - strtotime($startDate)) / 86400) + 1;
     $car = Car::find($carId);
     $total_price = $days * $car->daily_rent_price;
 

@@ -24,7 +24,7 @@
                             <tr>
                                 <th>Car</th>
                                 <th>Model</th>
-                                <th>Booking date</th>
+                                <th>Booking placed</th>
                                 <th>Duration</th>
                                 <th>Rent</th>
                                 <th>Status</th>
@@ -40,7 +40,7 @@
                                     <td>
                                         {{ Carbon\Carbon::parse($rental->start_date)->format('d M, Y') . ' - ' . Carbon\Carbon::parse($rental->end_date)->format('d M, Y') }}
                                     </td>
-                                    <td>{{ $rental->total_cost }} BDT</td>
+                                    <td>BDT {{ number_format($rental->total_cost) }}</td>
                                     <td>{{ $rental->status }}</td>
                                     <td>
                                         <form method="POST" action="{{ route('cancelBooking', $rental->id) }}"

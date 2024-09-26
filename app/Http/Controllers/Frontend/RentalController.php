@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Enums\RentalStatus;
+use App\Mail\CarBooked;
 use App\Models\Car;
 use App\Models\Rental;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class RentalController extends Controller
 {
@@ -33,7 +35,7 @@ class RentalController extends Controller
     }
 
     //get days between two dates
-    $days = (strtotime($endDate) - strtotime($startDate)) / 86400 == 0 ? 1 : (strtotime($endDate) - strtotime($startDate)) / 86400;
+    $days = ((strtotime($endDate) - strtotime($startDate)) / 86400) + 1;
     $total_price = $days * $car->daily_rent_price;
 
     $rental = new Rental();
@@ -45,7 +47,26 @@ class RentalController extends Controller
     $rental->status = RentalStatus::ONGOING->value;
     $rental->save();
 
-    return redirect()->route('currentBooking');
+    //send email to user
+    $userName = Auth::user()->name;
+    $userMessage = [
+      'name' => $userName,
+      'messageContent' => "You have booked a car for $days days from $startDate to $endDate.",
+      'cost' =>  "$total_price.",
+      'carBrand' => $car->brand,
+      'carModel' => $car->model,
+    ];
+    $adminMessage = [
+      'name' => "Admin",
+      'messageContent' => "$userName has booked a car for $days days from $startDate to $endDate.",
+      'cost' =>  "$total_price.",
+      'carBrand' => $car->brand,
+      'carModel' => $car->model,
+    ];
+    Mail::to(Auth::user()->email)->send(new CarBooked($userMessage));
+    Mail::to('admin@email.com')->send(new CarBooked($adminMessage));
+
+    return redirect()->back()->with('success', 'Car booked successfully.');
   }
 
   private function isCarAvailable($carId, $startDate, $endDate)
