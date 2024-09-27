@@ -21,6 +21,7 @@
                         <th>Model</th>
                         <th>Duration</th>
                         <th>Price</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -32,6 +33,7 @@
                                 {{ Carbon\Carbon::parse($rental->start_date)->format('d M, Y') . ' - ' . Carbon\Carbon::parse($rental->end_date)->format('d M, Y') }}
                             </td>
                             <td>{{ $rental->total_cost }} BDT</td>
+                            <td>{{ $rental->status }}</td>
 
                         </tr>
                     @endforeach

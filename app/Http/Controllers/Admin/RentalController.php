@@ -16,7 +16,7 @@ class RentalController extends Controller
    */
   public function index()
   {
-    $rentals = Rental::all();
+    $rentals = Rental::orderBy('id', 'desc')->get();
     return view('admin.rental.index', compact('rentals'));
   }
 
