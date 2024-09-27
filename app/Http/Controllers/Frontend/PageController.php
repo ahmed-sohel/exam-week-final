@@ -16,4 +16,14 @@ class PageController extends Controller
 
     return view('welcome', compact('cars', 'carTypes', 'brands'));
   }
+
+  public function about()
+  {
+    return view('about');
+  }
+
+  public function contact()
+  {
+    return view('contact');
+  }
 }
